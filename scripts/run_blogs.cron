@@ -1,0 +1,1 @@
+1 6 * * * /var/www/django-web/blog/scripts/run_blogs.sh >> crawl_blog.log

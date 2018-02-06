@@ -1,0 +1,30 @@
+.codehilite pre
+{
+    color: #6ab825 !important;
+    background-color: #272822 !important;
+}
+.aligned ul
+{
+	margin-left: 0px;
+}
+
+.aligned label
+{
+	float: none;
+}
+
+textarea
+{
+	width: 100%;
+}
+
+ul li
+{
+	list-style-type: circle;
+}
+
+.module ol
+{
+	margin-left: 0px;
+	padding-left: 20px;
+}

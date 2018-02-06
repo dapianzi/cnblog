@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_markdown %}
+
+{% block title %}Welcome Dapianzi's blog{% endblock title %}
+
+{% block content %}
+
+{% for p in posts %}
+<section class="post">
+    <header class="post-header">
+        <h2 class="page-header">
+            <a href="{% url 'blog:detail' p.id %}">{{ p.title }}</a>
+            {% if user.is_authenticated %}
+            <small><a target="_blank" href="/blog/dapianzi-admin/app/article/{{ post.id }}/change/" class="btn btn-link">Edit</a></small>
+            {% endif %}
+        </h2>
+        <p class="post-meta">
+            <label>Time: <span class="post-time">{{ p.pub_time_format }}</span></label>
+            {% if p.category %}
+            <label>Category: <a class="text-info" href="{% url 'blog:posts' %}?category={{ p.category.name }}">{{ p.category.name }}</a></label>
+            {% endif %}
+            <label>Tags:
+            {% if p.tags %}
+            {% for tag in p.tags.all %}
+            <a class="post-category post-category-{{ tag.mod }}" href="{% url 'blog:posts' %}?tag={{ tag.name }}">{{ tag.name }}</a>
+            {% endfor %}
+            </label>
+            {% endif %}
+        </p>
+    </header>
+    <div class="post-description">
+        <p>{{ p.md_body|custom_markdown }}</p>
+    </div>
+</section>
+{% endfor %}
+<div class="" style="text-align:right;">
+    <a class="btn btn-link" href="{% url 'blog:posts' %}">More&gt;&gt;</a>
+</div>
+{% endblock content %}
